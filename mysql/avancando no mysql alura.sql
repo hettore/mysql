@@ -50,3 +50,8 @@ AND IDADE >= 20;
 
 SELECT * FROM tabela_de_clientes WHERE CIDADE IN ('RIO DE JANEIRO', 'SAO PAULO')
 AND (IDADE >= 19 AND IDADE <= 22);
+
+SELECT * FROM tabela_de_produtos WHERE SABOR LIKE '%MAÇA%';
+
+SELECT * FROM tabela_de_produtos WHERE SABOR LIKE '%MAÇA%'
+AND EMBALAGEM = 'PET';
