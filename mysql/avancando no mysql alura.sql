@@ -173,3 +173,40 @@ END AS STATUS_IDADE
 FROM tabela_de_clientes;
 
 SELECT * FROM tabela_de_clientes;
+
+SELECT * FROM tabela_de_vendedores;
+SELECT * FROM notas_fiscais;
+SELECT * FROM itens_notas_fiscais;
+
+SELECT * FROM tabela_de_vendedores a 
+INNER JOIN notas_fiscais b
+ON a.MATRICULA = b.MATRICULA;
+
+SELECT A.MATRICULA, A.NOME, COUNT(*) FROM 
+tabela_de_vendedores A
+INNER JOIN notas_fiscais B
+ON A.MATRICULA = B.MATRICULA
+GROUP BY A.MATRICULA, A.NOME;
+
+SELECT A.MATRICULA, A.NOME, COUNT(*) FROM 
+tabela_de_vendedores A, notas_fiscais B
+WHERE A.MATRICULA = B.MATRICULA
+GROUP BY A.MATRICULA, A.NOME;
+
+SELECT YEAR(DATA_VENDA), SUM(QUANTIDADE * PRECO) AS FATURAMENTO
+FROM notas_fiscais NF
+INNER JOIN itens_notas_fiscais INF
+ON NF.NUMERO = INF.NUMERO
+GROUP BY YEAR(DATA_VENDA);
+
+SELECT COUNT(*) AS TOTAL_CLIENTES FROM tabela_de_clientes;
+
+SELECT CPF, COUNT(*) FROM notas_fiscais GROUP BY CPF;
+
+SELECT DISTINCT A.CPF, A.NOME, B.CPF FROM tabela_de_clientes A 
+LEFT JOIN notas_fiscais B ON A.CPF = B.CPF; 
+
+SELECT DISTINCT A.CPF, A.NOME, B.CPF FROM tabela_de_clientes A 
+LEFT JOIN notas_fiscais B ON A.CPF = B.CPF
+WHERE B.CPF IS NULL AND YEAR(B.DATA_VENDA) = 2018;
+
